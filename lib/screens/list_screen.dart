@@ -23,12 +23,9 @@ class ListScreen extends StatelessWidget {
                 child: TextHeader(header: 'Список пациентов')
               ),
               Expanded(child: PacientList(pacients: state.pacients)),
-              SizedBox(
-                height: 100,
-                child: BottomPanel(
-                  text: 'Добавить пациента',
-                  onTap: () => Navigator.pushNamed(context, FormScreen.name),
-                )
+              BottomPanel(
+                text: 'Добавить пациента',
+                onTap: () => Navigator.pushNamed(context, FormScreen.name),
               )
             ],
           ),

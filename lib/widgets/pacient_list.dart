@@ -40,7 +40,7 @@ class PacientList extends StatelessWidget {
                 width: 40,
                 height: 40,
               ),
-              subtitle: Text(pacients[index].address),
+              subtitle: Text(pacients[index].birthString),
               title: Text(pacients[index].initials),
               trailing: const Icon(Icons.more_vert),
             ),

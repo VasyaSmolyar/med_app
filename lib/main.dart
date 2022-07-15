@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         title: 'Med app',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          fontFamily: 'Muller',
           pageTransitionsTheme: const PageTransitionsTheme(
             builders: {
               TargetPlatform.android: CupertinoPageTransitionsBuilder(),

@@ -10,9 +10,17 @@ class TextHeader extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return Text(
-      textAlign: TextAlign.center,
-      header
+    return Padding(
+      padding: const EdgeInsets.only(top: 50, bottom: 10),
+      child: Text(
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          fontFamily: 'Muller',
+          fontWeight: FontWeight.w500,
+          fontSize: 20,
+        ),
+        header
+      ),
     );
   }
 }

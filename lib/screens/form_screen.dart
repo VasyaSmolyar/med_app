@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:med_app/bloc/pacient_form_bloc.dart';
 import 'package:med_app/cubit/pacient_cubit.dart';
-import 'package:med_app/models/pacient.dart';
 import 'package:med_app/widgets/bottom_panel.dart';
 
 class FormScreen extends StatelessWidget {

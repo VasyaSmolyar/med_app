@@ -86,6 +86,8 @@ class Pacient {
       end = 'лет';
     }
 
-    return "$birthDay ($yearDiff $end)";
+    final birthess = DateFormat('dd.MM.yyyy').format(birthDay);
+
+    return "$birthess ($yearDiff $end)";
   }
 }

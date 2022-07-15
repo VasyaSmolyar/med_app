@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         initialRoute: ListScreen.name,
         routes: {
           ListScreen.name: (context) => const ListScreen(),
-          CardScreen.name: (context) => const CardScreen(),
+          CardScreen.name: (context) => CardScreen(),
           FormScreen.name: (context) => const FormScreen()
         },
       ),

@@ -1,13 +1,17 @@
+import 'package:bottom_drawer/bottom_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/models/pacient.dart';
 import 'package:med_app/widgets/bottom_panel.dart';
 import 'package:med_app/widgets/diagnosis_card.dart';
+import 'package:med_app/widgets/drawer.dart';
 import 'package:med_app/widgets/text_tile.dart';
 
 class CardScreen extends StatelessWidget {
-  const CardScreen({Key? key}) : super(key: key);
+  CardScreen({Key? key}) : super(key: key);
 
   static const name = '/card';
+
+  BottomDrawerController controller = BottomDrawerController();
 
   @override
   Widget build(BuildContext context) {
@@ -85,12 +89,15 @@ class CardScreen extends StatelessWidget {
                 Align(
                   child: BottomPanel(
                     text: 'Добавить диагноз',
-                    onTap: () {},
+                    onTap: () {
+                      controller.open();
+                    },
                   ),
                 )
               ]
             ),
-          )
+          ),
+          NavDrawer(controller: controller)
         ],
       ),
     );

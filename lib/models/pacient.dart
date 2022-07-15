@@ -67,6 +67,10 @@ class Pacient {
 
   String get sexTitle => sex == Sex.male ? "Мужской" : "Женский";
 
+  static Sex sexFrom(String title) {
+    return title == "Мужской" ? Sex.male : Sex.female;
+  }
+
   String get birthString {
     final yearDiff = DateTime.now().year - birthDay.year;
     final yearEnd = yearDiff % 100;

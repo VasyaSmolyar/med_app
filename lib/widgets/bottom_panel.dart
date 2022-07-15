@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class BottomPanel extends StatelessWidget {
   const BottomPanel({
     Key? key,
-    required this.text
+    required this.text,
+    required this.onTap
   }) : super(key: key);
 
   final String text;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class BottomPanel extends StatelessWidget {
         ),
       ),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onTap,
         child: Text(
           textAlign: TextAlign.center,
           text.toUpperCase(),

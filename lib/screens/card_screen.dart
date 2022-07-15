@@ -69,8 +69,9 @@ class CardScreen extends StatelessWidget {
                 DiagnosisCard(
                   diagnosises: pacient.diagnoses
                 ),
-                const BottomPanel(
-                  text: 'Добавить диагноз'
+                BottomPanel(
+                  text: 'Добавить диагноз',
+                  onTap: () {},
                 )
               ]
             ),

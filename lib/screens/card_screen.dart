@@ -24,6 +24,7 @@ class CardScreen extends StatelessWidget {
               pacient.image ?? 'assets/default.png',
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.width,
+              fit: BoxFit.cover
             ),
           ),
           Container(
@@ -40,38 +41,52 @@ class CardScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height - MediaQuery.of(context).size.width + topPadding + 10,
             child: Column(
               children: [
-                Text(pacient.fullName),
-                Text(pacient.birthString),
-                Container(
-                  decoration: const BoxDecoration(
-                    color: Color.fromRGBO(153, 153, 153, 0.08)
-                  ),
-                  margin: const EdgeInsets.all(5.0),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20.0,
-                    vertical: 10.0
-                  ),
+                Expanded(
                   child: Column(
                     children: [
-                      TextTile(
-                        icon: pacient.sex == Sex.male ? Icons.male : Icons.female, 
-                        title: 'Пол', 
-                        subtitle: pacient.sexTitle
+                      Text(pacient.fullName),
+                      Text(pacient.birthString),
+                      Container(
+                        decoration: const BoxDecoration(
+                          color: Color.fromRGBO(153, 153, 153, 0.08),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
+                        margin: const EdgeInsets.all(5.0),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20.0,
+                          vertical: 10.0
+                        ),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 5),
+                          child: Column(
+                            children: [
+                              TextTile(
+                                icon: pacient.sex == Sex.male ? Icons.male : Icons.female, 
+                                title: 'Пол', 
+                                subtitle: pacient.sexTitle
+                              ),
+                              TextTile(
+                                icon: Icons.place, 
+                                title: 'Адрес проживания', 
+                                subtitle: pacient.address
+                              ),
+                            ]
+                          ),
+                        ),
                       ),
-                      TextTile(
-                        icon: pacient.sex == Sex.male ? Icons.male : Icons.female, 
-                        title: 'Адрес проживания', 
-                        subtitle: pacient.address
+                      DiagnosisCard(
+                        diagnosises: pacient.diagnoses
                       ),
-                    ]
+                    ],
                   ),
                 ),
-                DiagnosisCard(
-                  diagnosises: pacient.diagnoses
-                ),
-                BottomPanel(
-                  text: 'Добавить диагноз',
-                  onTap: () {},
+                Align(
+                  child: BottomPanel(
+                    text: 'Добавить диагноз',
+                    onTap: () {},
+                  ),
                 )
               ]
             ),

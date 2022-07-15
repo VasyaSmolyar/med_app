@@ -18,10 +18,7 @@ class ListScreen extends StatelessWidget {
         return Scaffold(
           body: Column(
             children: [
-              const SizedBox(
-                height: 100,
-                child: TextHeader(header: 'Список пациентов')
-              ),
+              const TextHeader(header: 'Список пациентов'),
               Expanded(child: PacientList(pacients: state.pacients)),
               BottomPanel(
                 text: 'Добавить пациента',

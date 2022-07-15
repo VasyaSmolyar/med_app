@@ -26,7 +26,7 @@ class BottomPanel extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(
         border: Border(
-          top: BorderSide(width: 0.5, color: Color.fromRGBO(0, 0, 0, 0.5)),
+          top: BorderSide(width: 0.5, color: Color.fromRGBO(0, 0, 0, 0.1)),
         ),
       ),
       child: SizedBox(

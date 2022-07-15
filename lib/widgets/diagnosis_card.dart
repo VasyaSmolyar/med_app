@@ -13,16 +13,29 @@ class DiagnosisCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('Диагнозы'),
+        const Text('Диагнозы'),
         Container(
+          decoration: const BoxDecoration(
+            color: Color.fromRGBO(153, 153, 153, 0.08),
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
+            ),
+          ),
           child: Column(
             children: 
               diagnosises.map((e) { 
-                return Row(
-                  children: [
-                    Text(e.title),
-                    const Icon(Icons.arrow_forward_ios)
-                  ],
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(e.title),
+                      const RotationTransition(
+                        turns: AlwaysStoppedAnimation(-90 / 360),
+                        child: Icon(Icons.arrow_back_ios, size: 15,)
+                      )
+                    ],
+                  ),
                 );  
               }).toList(),
           ),

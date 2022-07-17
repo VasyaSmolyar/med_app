@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:med_app/helpers/sample_data.dart';
+import 'package:med_app/models/diagnosis.dart';
 import 'package:med_app/models/pacient.dart';
 
 part 'pacient_state.dart';
@@ -18,7 +20,7 @@ class PacientCubit extends Cubit<PacientState> {
   }) {
     List<Pacient> pacients = state.pacients;
     pacients.add(Pacient(
-      id: pacients.length.toString(), 
+      id: UniqueKey().toString(), 
       firstName: 
       firstName, 
       lastName: lastName, 
@@ -31,6 +33,31 @@ class PacientCubit extends Cubit<PacientState> {
 
     emit(
       PacientState(pacients)
+    );
+  }
+
+  void addDiagnosis({
+    required String id,
+    required String title
+  }) {
+    final pacients = state.pacients;
+
+    emit(
+      PacientState(pacients.map((e) {
+        if(e.id != id) {
+          return e;
+        }
+
+        List<Diagnosis> diagnoses = e.diagnoses;
+        diagnoses.add(Diagnosis(
+          id: UniqueKey().toString(),
+          title: title
+        )); 
+
+        return e.copyWith(
+          diagnoses: diagnoses
+        );
+      }).toList())
     );
   }
 }

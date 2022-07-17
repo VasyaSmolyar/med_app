@@ -4,7 +4,7 @@ import 'package:med_app/cubit/pacient_cubit.dart';
 import 'package:med_app/screens/card_screen.dart';
 import 'package:med_app/screens/form_screen.dart';
 import 'package:med_app/screens/list_screen.dart';
-
+import 'package:med_app/screens/diagnosis_form.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -33,7 +33,8 @@ class MyApp extends StatelessWidget {
         routes: {
           ListScreen.name: (context) => const ListScreen(),
           CardScreen.name: (context) => CardScreen(),
-          FormScreen.name: (context) => const FormScreen()
+          FormScreen.name: (context) => const FormScreen(),
+          DiagnosisForm.name: (context) => const DiagnosisForm()
         },
       ),
     );

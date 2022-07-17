@@ -12,8 +12,14 @@ final sampleData = [
     image: 'assets/person.png',
     address: 'г. Таганрог, ул. Петровская, 89 Е, кв. 401', 
     diagnoses: [
-      const Diagnosis(title: 'Острый гастроэнтерит'),
-      const Diagnosis(title: 'Хронический гастрит'),
+      const Diagnosis(
+        id: '1',
+        title: 'Острый гастроэнтерит'
+      ),
+      const Diagnosis(
+        id: '2',
+        title: 'Хронический гастрит'
+      ),
     ]
   ),
 
@@ -26,7 +32,10 @@ final sampleData = [
     sex: Sex.male,
     address: 'г. Таганрог, ул. Петровская, 89 Е, кв. 402', 
     diagnoses: [
-      const Diagnosis(title: 'Хронический гастрит'),
+      const Diagnosis(
+        id: '1',
+        title: 'Хронический гастрит'
+      ),
     ]
   )
 ];

@@ -5,11 +5,12 @@ import 'package:med_app/models/diagnosis.dart';
 class DiagnosisCard extends StatelessWidget {
   DiagnosisCard({
     Key? key,
-    required this.diagnosises
+    required this.diagnosises,
+    required this.controller
   }) : super(key: key);
 
   final List<Diagnosis> diagnosises;
-  final BottomDrawerController controller = BottomDrawerController();
+  BottomDrawerController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +28,9 @@ class DiagnosisCard extends StatelessWidget {
             children: 
               diagnosises.map((e) { 
                 return GestureDetector(
-                  onTap: (() {
+                  onTap: () {
                     controller.open();
-                  }),
+                  },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 20),
                     child: Row(

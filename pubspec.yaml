@@ -82,8 +82,8 @@ flutter:
     - family: Muller
       fonts:
         - asset: assets/fonts/MullerRegular.ttf
-        - asset: assets/fonts/MullerBold.ttf
-          weight: 500
+        - asset: assets/fonts/MullerMedium.ttf
+          weight: 600
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf

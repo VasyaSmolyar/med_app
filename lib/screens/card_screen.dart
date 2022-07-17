@@ -66,41 +66,73 @@ class _CardScreenState extends State<CardScreen> {
                 child: Column(children: [
                   Expanded(
                     child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Text(pacient.fullName),
-                          Text(pacient.birthString),
-                          Container(
-                            decoration: const BoxDecoration(
-                              color: Color.fromRGBO(153, 153, 153, 0.08),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Column(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 5.0),
+                                  child: Text(
+                                    pacient.fullName,
+                                    maxLines: 2,
+                                    textAlign: TextAlign.left,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 22,
+                                      height: 1.27,
+                                      letterSpacing: 0.374,
+                                      color: Colors.black
+                                    )
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 5.0),
+                                  child: Text(
+                                    pacient.birthString,
+                                    textAlign: TextAlign.left,
+                                    style: const TextStyle(
+                                      color: Color.fromRGBO(153, 153, 153, 1)
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Container(
+                              decoration: const BoxDecoration(
+                                color: Color.fromRGBO(153, 153, 153, 0.08),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              //margin: const EdgeInsets.all(5.0),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20.0, 
+                                  vertical: 10.0),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(vertical: 5),
+                                child: Column(children: [
+                                  TextTile(
+                                      icon: pacient.sex == Sex.male
+                                          ? Icons.male
+                                          : Icons.female,
+                                      title: 'Пол',
+                                      subtitle: pacient.sexTitle),
+                                  TextTile(
+                                      icon: Icons.place,
+                                      title: 'Адрес проживания',
+                                      subtitle: pacient.address),
+                                ]),
                               ),
                             ),
-                            margin: const EdgeInsets.all(5.0),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 20.0, vertical: 10.0),
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(vertical: 5),
-                              child: Column(children: [
-                                TextTile(
-                                    icon: pacient.sex == Sex.male
-                                        ? Icons.male
-                                        : Icons.female,
-                                    title: 'Пол',
-                                    subtitle: pacient.sexTitle),
-                                TextTile(
-                                    icon: Icons.place,
-                                    title: 'Адрес проживания',
-                                    subtitle: pacient.address),
-                              ]),
-                            ),
-                          ),
-                          DiagnosisCard(
-                              diagnosises: pacient.diagnoses,
-                              controller: controller,
-                              callback: setDiasnosis),
-                        ],
+                            DiagnosisCard(
+                                diagnosises: pacient.diagnoses,
+                                controller: controller,
+                                callback: setDiasnosis),
+                          ],
+                        ),
                       ),
                     ),
                   ),

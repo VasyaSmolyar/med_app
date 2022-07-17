@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:med_app/bloc/pacient_form_bloc.dart';
 import 'package:med_app/cubit/pacient_cubit.dart';
 import 'package:med_app/widgets/bottom_panel.dart';
+import 'package:med_app/widgets/text_header.dart';
 
 class FormScreen extends StatelessWidget {
   const FormScreen({Key? key}) : super(key: key);
@@ -19,7 +21,6 @@ class FormScreen extends StatelessWidget {
 
           return Scaffold(
             resizeToAvoidBottomInset: false,
-            appBar: AppBar(title: const Text('Login')),
             body: FormBlocListener<PacientFormBloc, String, String>(
               onSubmitting: (context, state) {
               },
@@ -43,63 +44,84 @@ class FormScreen extends StatelessWidget {
               },
               child: SingleChildScrollView(
                 physics: const ClampingScrollPhysics(),
-                child: AutofillGroup(
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
                   child: Column(
-                    children: <Widget>[
-                      TextFieldBlocBuilder(
-                        textFieldBloc: loginFormBloc.lastName,
-                        decoration: const InputDecoration(
-                          labelText: 'Фамилия',
-                        ),
-                        autofillHints: const [
-                          AutofillHints.username,
-                        ]
+                    children: [
+                      const TextHeader(
+                        header: 'Новый пациент'
                       ),
-                      TextFieldBlocBuilder(
-                        textFieldBloc: loginFormBloc.firstName,
-                        decoration: const InputDecoration(
-                          labelText: 'Имя',
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.only(top: 25),
+                          decoration: const BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.1), spreadRadius: 0.5)
+                          ],
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(25),
+                            topRight: Radius.circular(25)
+                          ),
+                          color: Colors.white
                         ),
-                        autofillHints: const [
-                          AutofillHints.username,
-                        ]
-                      ),
-                      TextFieldBlocBuilder(
-                        textFieldBloc: loginFormBloc.secondName,
-                        decoration: const InputDecoration(
-                          labelText: 'Отчество',
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                            child: Column(
+                              children: [
+                                TextFieldBlocBuilder(
+                                  textFieldBloc: loginFormBloc.lastName,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Фамилия',
+                                  ),
+                                  
+                                ),
+                                TextFieldBlocBuilder(
+                                  textFieldBloc: loginFormBloc.firstName,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Имя',
+                                  ),
+                                  
+                                ),
+                                TextFieldBlocBuilder(
+                                  textFieldBloc: loginFormBloc.secondName,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Отчество',
+                                  ),
+                                  
+                                ),
+                                DropdownFieldBlocBuilder<String>(
+                                  selectFieldBloc: loginFormBloc.sex,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Пол',
+                                  ),
+                                  itemBuilder: (ctx, value) => FieldItem(
+                                    child: Text(value),
+                                  ),
+                                ),
+                                DateTimeFieldBlocBuilder(
+                                  decoration: const InputDecoration(
+                                    labelText: 'Возраст',
+                                  ),
+                                  dateTimeFieldBloc: loginFormBloc.birthDate,
+                                  format: DateFormat('dd-MM-yyyy'),
+                                  initialDate: DateTime.now(),
+                                  firstDate: DateTime(1900),
+                                  lastDate: DateTime(2030),
+                                ),
+                                TextFieldBlocBuilder(
+                                  textFieldBloc: loginFormBloc.address,
+                                  decoration: const InputDecoration(
+                                    labelText: 'Адрес проживания',
+                                  ),
+                                  autofillHints: const [
+                                    AutofillHints.username,
+                                  ]
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
-                        autofillHints: const [
-                          AutofillHints.username,
-                        ]
-                      ),
-                      DropdownFieldBlocBuilder<String>(
-                        selectFieldBloc: loginFormBloc.sex,
-                        decoration: const InputDecoration(
-                          labelText: 'Пол',
-                        ),
-                        itemBuilder: (ctx, value) => FieldItem(
-                          child: Text(value),
-                        ),
-                      ),
-                      DateTimeFieldBlocBuilder(
-                        decoration: const InputDecoration(
-                          labelText: 'Возраст',
-                        ),
-                        dateTimeFieldBloc: loginFormBloc.birthDate,
-                        format: DateFormat('dd-MM-yyyy'),
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(1900),
-                        lastDate: DateTime(2030),
-                      ),
-                      TextFieldBlocBuilder(
-                        textFieldBloc: loginFormBloc.address,
-                        decoration: const InputDecoration(
-                          labelText: 'Адрес проживания',
-                        ),
-                        autofillHints: const [
-                          AutofillHints.username,
-                        ]
                       ),
                       BottomPanel(
                         text: 'Сохранить', 

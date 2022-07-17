@@ -61,7 +61,12 @@ class PacientList extends StatelessWidget {
                     height: 40,
                   ),
                   subtitle: Text(pacients[index].birthString),
-                  title: Text(pacients[index].initials),
+                  title: Text(
+                    style: const TextStyle( 
+                      fontWeight: FontWeight.w600
+                    ),
+                    pacients[index].initials
+                  ),
                   trailing: const Icon(
                     Icons.arrow_forward_ios,
                     size: 15

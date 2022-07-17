@@ -16,7 +16,7 @@ class TextHeader extends StatelessWidget {
         textAlign: TextAlign.center,
         style: const TextStyle(
           fontFamily: 'Muller',
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.w600,
           fontSize: 20,
         ),
         header

@@ -47,7 +47,7 @@ class PacientList extends StatelessWidget {
             ),
 
             child: GestureDetector(
-              onTap: () => Navigator.pushNamed(context, CardScreen.name, arguments: pacients[index]),
+              onTap: () => Navigator.pushNamed(context, CardScreen.name, arguments: pacients[index].id),
               child: Container(
                 decoration: const BoxDecoration(
                   border: Border(

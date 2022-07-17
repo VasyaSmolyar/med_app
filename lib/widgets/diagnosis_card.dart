@@ -6,11 +6,13 @@ class DiagnosisCard extends StatelessWidget {
   DiagnosisCard({
     Key? key,
     required this.diagnosises,
-    required this.controller
+    required this.controller,
+    required this.callback
   }) : super(key: key);
 
   final List<Diagnosis> diagnosises;
   BottomDrawerController controller;
+  final Function callback;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +31,7 @@ class DiagnosisCard extends StatelessWidget {
               diagnosises.map((e) { 
                 return GestureDetector(
                   onTap: () {
+                    callback(e);
                     controller.open();
                   },
                   child: Padding(

@@ -60,4 +60,53 @@ class PacientCubit extends Cubit<PacientState> {
       }).toList())
     );
   }
+
+  void editDiagnosis({
+    required String id,
+    required String diagnosisId,
+    required String title
+  }) {
+    final pacients = state.pacients;
+
+    emit(
+      PacientState(pacients.map((e) {
+        if(e.id != id) {
+          return e;
+        }
+
+        List<Diagnosis> diagnoses = e.diagnoses.map((ei) {
+          if(ei.id != diagnosisId) {
+            return ei;
+          }
+
+          return Diagnosis(id: diagnosisId, title: title);
+        }).toList();
+
+        return e.copyWith(
+          diagnoses: diagnoses
+        );
+      }).toList())
+    );
+  }
+
+  void deleteDiagnosis({
+    required String id,
+    required String diagnosisId
+  }) {
+    final pacients = state.pacients;
+
+    emit(
+      PacientState(pacients.map((e) {
+        if(e.id != id) {
+          return e;
+        }
+
+        List<Diagnosis> diagnoses = e.diagnoses.where((el) => el.id == diagnosisId).toList();
+
+        return e.copyWith(
+          diagnoses: diagnoses
+        );
+      }).toList())
+    );
+  }
 }

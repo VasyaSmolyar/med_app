@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_drawer/bottom_drawer.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:med_app/cubit/pacient_cubit.dart';
+import 'package:med_app/models/diagnosis.dart';
+import 'package:med_app/screens/diagnosis_form.dart';
 
 class NavDrawer extends StatelessWidget {
   const NavDrawer({
     Key? key,
-    required this.controller
+    required this.controller,
+    required this.id,
+    required this.diagnosis
   }) : super(key: key);
 
   final BottomDrawerController controller;
+  final String id;
+  final Diagnosis? diagnosis;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +41,18 @@ class NavDrawer extends StatelessWidget {
                 ListTile(
                   leading: const Icon(Icons.edit_note),
                   title: const Text('Изменить диагноз'),
-                  onTap: () {},
+                  onTap: () {
+                    print(diagnosis!.id);
+
+                    Navigator.pushNamed(
+                        context, 
+                        DiagnosisForm.name, 
+                        arguments: {
+                          'id': id,
+                          'diagnosisId': diagnosis!.id
+                        }
+                      );
+                    },
                 ),
                 ListTile(
                   leading: const Icon(Icons.delete_outlined,),
@@ -42,7 +61,12 @@ class NavDrawer extends StatelessWidget {
                   ),
                   textColor: Colors.red,
                   iconColor: Colors.red,
-                  onTap: () {},
+                  onTap: () {
+                    BlocProvider.of<PacientCubit>(context).deleteDiagnosis(
+                      id: id, 
+                      diagnosisId: diagnosis!.id
+                    );
+                  },
                 )
               ]
             ),

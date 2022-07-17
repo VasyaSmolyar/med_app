@@ -12,6 +12,7 @@ class DiagnosisForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final id = (ModalRoute.of(context)!.settings.arguments as Map<String, String>)['id']!;
+    final diagnosisId = (ModalRoute.of(context)!.settings.arguments as Map<String, String>)['diagnosisId'];
 
     return BlocProvider(
       create: (context) => DiagnosisBloc(),
@@ -25,10 +26,18 @@ class DiagnosisForm extends StatelessWidget {
               onSubmissionFailed: (context, state) {
               },
               onSuccess: (context, state) {
-                BlocProvider.of<PacientCubit>(context).addDiagnosis(
-                  id: id, 
-                  title: formBloc.title.value
-                );
+                if(diagnosisId != null) {
+                  BlocProvider.of<PacientCubit>(context).editDiagnosis(
+                    id: id, 
+                    diagnosisId: diagnosisId,
+                    title: formBloc.title.value
+                  );
+                } else {
+                  BlocProvider.of<PacientCubit>(context).addDiagnosis(
+                    id: id, 
+                    title: formBloc.title.value
+                  );
+                }
                 
                 Navigator.pop(context);
               },

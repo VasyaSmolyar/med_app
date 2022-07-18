@@ -42,8 +42,7 @@ class NavDrawer extends StatelessWidget {
                   leading: const Icon(Icons.edit_note),
                   title: const Text('Изменить диагноз'),
                   onTap: () {
-                    print(diagnosis!.id);
-
+                    controller.close();
                     Navigator.pushNamed(
                         context, 
                         DiagnosisForm.name, 
@@ -62,6 +61,7 @@ class NavDrawer extends StatelessWidget {
                   textColor: Colors.red,
                   iconColor: Colors.red,
                   onTap: () {
+                    controller.close();
                     BlocProvider.of<PacientCubit>(context).deleteDiagnosis(
                       id: id, 
                       diagnosisId: diagnosis!.id

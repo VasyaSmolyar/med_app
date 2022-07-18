@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:med_app/cubit/pacient_cubit.dart';
 import 'package:med_app/models/pacient.dart';
 import 'package:med_app/screens/card_screen.dart';
 
@@ -34,10 +36,14 @@ class PacientList extends StatelessWidget {
             key: UniqueKey(),
             endActionPane: ActionPane(
               motion: const ScrollMotion(),
-              dismissible: DismissiblePane(onDismissed: () {}),
+              dismissible: DismissiblePane(onDismissed: () {
+                BlocProvider.of<PacientCubit>(context).delete(id: pacients[index].id);
+              }),
               children: [
                 SlidableAction(
-                  onPressed: (context) {},
+                  onPressed: (context) {
+                    
+                  },
                   backgroundColor: const Color(0xFFFE4A49),
                   foregroundColor: Colors.white,
                   icon: Icons.delete,
@@ -55,10 +61,14 @@ class PacientList extends StatelessWidget {
                   ),
                 ),
                 child: ListTile(
-                  leading: Image.asset(
-                    pacients[index].image ?? 'assets/default.png',
-                    width: 40,
-                    height: 40,
+                  leading: ClipRRect(
+                    borderRadius: BorderRadius.circular(20.0),
+                    child: Image.asset(
+                      pacients[index].image ?? 'assets/default.png',
+                      width: 40,
+                      height: 40,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   subtitle: Text(pacients[index].birthString),
                   title: Text(

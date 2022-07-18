@@ -36,6 +36,16 @@ class PacientCubit extends Cubit<PacientState> {
     );
   }
 
+  void delete({
+    required String id
+  }) {
+    emit(
+      PacientState(
+        state.pacients.where((e) => e.id != id).toList()
+      )
+    );
+  }
+
   void addDiagnosis({
     required String id,
     required String title
@@ -101,7 +111,7 @@ class PacientCubit extends Cubit<PacientState> {
           return e;
         }
 
-        List<Diagnosis> diagnoses = e.diagnoses.where((el) => el.id == diagnosisId).toList();
+        List<Diagnosis> diagnoses = e.diagnoses.where((el) => el.id != diagnosisId).toList();
 
         return e.copyWith(
           diagnoses: diagnoses

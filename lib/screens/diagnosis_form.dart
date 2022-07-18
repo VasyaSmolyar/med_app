@@ -3,6 +3,7 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:med_app/bloc/diagnosis_bloc.dart';
 import 'package:med_app/cubit/pacient_cubit.dart';
 import 'package:med_app/widgets/bottom_panel.dart';
+import 'package:med_app/widgets/text_header.dart';
 
 class DiagnosisForm extends StatelessWidget {
   const DiagnosisForm({Key? key}) : super(key: key);
@@ -49,19 +50,49 @@ class DiagnosisForm extends StatelessWidget {
                 body: SingleChildScrollView(
                   physics: const ClampingScrollPhysics(),
                   child: AutofillGroup(
-                    child: Column(
-                      children: <Widget>[
-                        TextFieldBlocBuilder(
-                          textFieldBloc: formBloc.title,
-                          decoration: const InputDecoration(
-                            labelText: 'Диагноз',
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height,
+                      width: MediaQuery.of(context).size.width,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          const TextHeader(
+                            header: 'Диагноз'
                           ),
-                        ),
-                        BottomPanel(
-                          text: 'Сохранить', 
-                          onTap: formBloc.submit
-                        )
-                      ],
+                          Expanded(
+                            child: Container(
+                              padding: const EdgeInsets.only(top: 25),
+                                decoration: const BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.1), spreadRadius: 0.5)
+                                ],
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(25),
+                                  topRight: Radius.circular(25)
+                                ),
+                                color: Colors.white
+                              ),
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                                child: Column(
+                                  children: [
+                                    TextFieldBlocBuilder(
+                                      textFieldBloc: formBloc.title,
+                                      decoration: const InputDecoration(
+                                        labelText: 'Диагноз',
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          BottomPanel(
+                            text: 'Сохранить', 
+                            onTap: formBloc.submit
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
